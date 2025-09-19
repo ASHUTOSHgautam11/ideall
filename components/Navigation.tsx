@@ -9,6 +9,9 @@ import {
   Home,
   Users,
   Package,
+  Briefcase,
+  PlayCircle,
+  CreditCard,
   Image as ImageIcon,
   Phone,
   Calendar,
@@ -30,6 +33,9 @@ export default function Navigation() {
     { name: 'Our Story', href: '/our-story', icon: Users },
     { name: 'Product Categories', href: '/product-categories', icon: Package },
     // { name: 'Projects', href: '/project-showcase', icon: ImageIcon },
+    { name: 'Career', href: '/career', icon: Briefcase},
+    { name: 'Payment', href: '/payment', icon: CreditCard },
+    { name: 'Media', href: '/media', icon: PlayCircle },
   ];
 
   const isActivePath = (path: string) => pathname === path;

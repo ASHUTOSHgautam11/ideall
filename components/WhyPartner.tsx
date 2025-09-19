@@ -1,31 +1,44 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Globe, Shield, Award, TrendingUp } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Globe, Shield, Award } from 'lucide-react';
+import SubHeading from './SubHeading';
 
 const benefits = [
   {
     icon: Globe,
     title: 'Global Network',
-    description: 'Established relationships with premium manufacturers and suppliers across key markets including Asia, Europe, and the Americas for competitive prices.',
+    description:
+      'Premium manufacturer and supplier connections across Asia, Europe, and the Americas.',
     stat: '50+',
-    statLabel: 'Global Partners'
+    statLabel: 'Global Partners',
   },
   {
     icon: Shield,
     title: 'Quality Assurance',
-    description: 'Comprehensive quality control processes including factory audit, product testing, and compliance verification to meet international standards.',
+    description:
+      'Factory audits, compliance checks, and strict QC for world-class standards.',
     stat: '99.8%',
-    statLabel: 'Quality Rate'
+    statLabel: 'Quality Rate',
   },
   {
     icon: Award,
     title: 'Trade Expertise',
-    description: 'Expert navigation of international trade regulations, customs procedures, and logistics for ensured compliance and delivery excellence.',
+    description:
+      'Decades of navigating trade, customs, and logistics for seamless delivery.',
     stat: '15+',
-    statLabel: 'Years Experience'
-  }
+    statLabel: 'Years Experience',
+  },
+  {
+    icon: TrendingUp,
+    title: 'Business Growth',
+    description:
+      'Helping clients scale efficiently with reliable sourcing, logistics, and cost optimization.',
+    stat: '120%',
+    statLabel: 'Client Growth',
+  },
 ];
 
 function AnimatedCounter({ end, duration = 2000 }: { end: string; duration?: number }) {
@@ -70,43 +83,55 @@ function AnimatedCounter({ end, duration = 2000 }: { end: string; duration?: num
 
 export default function WhyPartner() {
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">
-            Why Partner with Ideall Solutions?
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Our expertise in international sourcing, combined with our commitment to quality and reliability, makes us the 
-            ideal partner for your procurement needs.
-          </p>
-        </div>
+    <>
+      <SubHeading
+        title="Why Partner with Ideall Solutions?"
+        description="We connect businesses with trusted global manufacturers and suppliers, ensuring access to premium products worldwide. Our rigorous quality assurance processes guarantee that every delivery meets international standards. With decades of trade expertise, we simplify complex logistics and compliance challenges. Partnering with us means driving efficiency, growth, and long-term success for your business."
+      />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {benefits.map((benefit, index) => {
-            const Icon = benefit.icon;
-            return (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                <CardContent className="p-8 text-center">
-                  <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-200">
-                    <Icon className="w-10 h-10 text-white" />
-                  </div>
-                  
-                  <div className="mb-4">
-                    <div className="text-4xl font-bold text-primary mb-2">
-                      <AnimatedCounter end={benefit.stat} />
-                    </div>
-                    <div className="text-secondary font-semibold">{benefit.statLabel}</div>
-                  </div>
-                  
-                  <h3 className="text-2xl font-bold text-primary mb-4">{benefit.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
-                </CardContent>
-              </Card>
-            );
-          })}
+      <section className="relative mb-20 overflow-hidden">
+        {/* Full-width container */}
+        <div className="w-full px-4 md:px-[10vw]">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 w-full">
+            {benefits.map((benefit, index) => {
+              const Icon = benefit.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                  className="w-full"
+                >
+                  <Card className="h-full group relative rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 bg-white w-full">
+                    <CardContent className="relative p-6 flex flex-col items-center text-center h-full">
+                      {/* Icon */}
+                      <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center mb-4 group-hover:bg-gray-200 transition-colors duration-300">
+                        <Icon className="w-6 h-6 text-gray-700" />
+                      </div>
+
+                      {/* Counter */}
+                      <div className="mb-3">
+                        <div className="text-2xl font-bold text-gray-900">
+                          <AnimatedCounter end={benefit.stat} />
+                        </div>
+                        <div className="text-xs font-medium uppercase text-gray-500">
+                          {benefit.statLabel}
+                        </div>
+                      </div>
+
+                      {/* Title & Description */}
+                      <h3 className="text-lg font-semibold text-gray-800 mb-2">{benefit.title}</h3>
+                      <p className="text-sm text-gray-600 leading-relaxed">{benefit.description}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

@@ -1,13 +1,13 @@
 'use client';
 
-import { useState } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Package, Sofa, Shirt, Palette } from 'lucide-react';
-import AboutPage from './AboutPage';
+import { motion } from 'framer-motion';
+import { Card } from '@/components/ui/card';
+import Heading from './Heading';
+import SubHeading from './SubHeading';
+import Link from 'next/link';
 
 const specializations = [
   {
-    icon: Package,
     title: 'Floorings',
     description: 'Premium flooring solutions from hardwood to luxury stone',
     features: [
@@ -17,10 +17,9 @@ const specializations = [
       'Natural Stone Solutions',
       'Eco-friendly Options'
     ],
-    color: 'from-blue-50 to-blue-100'
+    image: '/assets/portfolio/vartical1.jpg',
   },
   {
-    icon: Sofa,
     title: 'Furniture',
     description: 'Curated collections from worldwide high-quality manufacturers',
     features: [
@@ -30,10 +29,9 @@ const specializations = [
       'Designer Partnerships',
       'Quality Assurance'
     ],
-    color: 'from-green-50 to-green-100'
+    image: '/assets/portfolio/vartical2.jpg',
   },
   {
-    icon: Shirt,
     title: 'Fabrics',
     description: 'Luxury textiles and specialty materials for interior design',
     features: [
@@ -43,10 +41,9 @@ const specializations = [
       'Custom Weaving',
       'Sustainable Options'
     ],
-    color: 'from-purple-50 to-purple-100'
+    image: '/assets/portfolio/vartical3.jpg',
   },
   {
-    icon: Palette,
     title: 'Fashion Walls',
     description: 'Innovative wall solutions and decorative finishes',
     features: [
@@ -56,70 +53,105 @@ const specializations = [
       'Custom Solutions',
       'Installation Support'
     ],
-    color: 'from-orange-50 to-orange-100'
+    image: '/assets/portfolio/vartical4.jpg',
   }
 ];
 
-export default function TradeSpecializations() {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-
+export default function PortfolioSection() {
   return (
-    <section
-      className="py-20 bg-white"
-      style={{ fontFamily: 'var(--font-inter)' }}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">
-            Our Trade Specializations
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Four core categories where we excel in international sourcing, quality control, and procurement solutions
-          </p>
+    <>
+      <Heading>Portfolio</Heading>
+      <SubHeading
+        title="Explore Our Specializations"
+        description="Discover our expertise across four key domains, each crafted to deliver exceptional value.
+From innovative design to premium solutions, we bring creativity and quality together.
+Our diverse offerings are tailored to meet unique needs with precision and care.
+Partner with us to experience excellence across every specialization."
+      />
+
+      <section className="w-full py-10 bg-white mb-8">
+        {/* Desktop / Tablet Grid */}
+        <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-0">
+          {specializations.map((spec, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.15, duration: 0.6 }}
+              className="relative group h-[70vh] w-full"
+            >
+              {/* Background Image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                style={{ backgroundImage: `url(${spec.image})` }}
+              />
+
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+
+              {/* Content */}
+              <div className="absolute bottom-6 left-6 right-6 text-white z-10">
+                <Link href="/underconstruction">
+                  <h3 className="text-4xl font-bold mb-2 hover:underline cursor-pointer">
+                    {spec.title}
+                  </h3>
+                </Link>
+                <p className="text-sm mb-4 opacity-90">{spec.description}</p>
+                <ul className="space-y-1 text-sm">
+                  {spec.features.map((feature, i) => (
+                    <li key={i} className="flex items-center">
+                      <div className="w-1.5 h-1.5 bg-white rounded-full mr-2" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {specializations.map((spec, index) => {
-            const Icon = spec.icon;
-            return (
-              <Card
-                key={index}
-                className={`
-    group cursor-pointer 
-    transition-all duration-300 
-    hover:shadow-xl 
-    hover:-translate-y-2 
-    hover:scale-105
-    ${hoveredCard === index ? 'shadow-xl' : 'shadow-lg'}
-  `}
-                onMouseEnter={() => setHoveredCard(index)}
-                onMouseLeave={() => setHoveredCard(null)}
-              >
+        {/* Mobile Slider */}
+        <div className="md:hidden flex overflow-x-auto snap-x snap-mandatory space-x-4 px-4">
+          {specializations.map((spec, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.15, duration: 0.6 }}
+              className="relative group h-[70vh] min-w-[85%] flex-shrink-0 snap-center overflow-hidden"
+            >
+              {/* Background Image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                style={{ backgroundImage: `url(${spec.image})` }}
+              />
 
-                <CardContent className="p-6">
-                  <div className={`w-16 h-16 bg-gradient-to-br ${spec.color} rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-200`}>
-                    <Icon className="w-8 h-8 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-bold text-primary mb-3">{spec.title}</h3>
-                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">{spec.description}</p>
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 
-                  <div className="space-y-2">
-                    <h4 className="font-semibold text-gray-700 text-sm">Key Services:</h4>
-                    <ul className="space-y-1">
-                      {spec.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="text-gray-600 text-sm flex items-center">
-                          <div className="w-1.5 h-1.5 bg-secondary rounded-full mr-2"></div>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
+              {/* Content */}
+              <div className="absolute bottom-6 left-6 right-6 text-white z-10">
+                <Link href="/underconstruction">
+                  <h3 className="text-3xl font-bold mb-2 hover:underline cursor-pointer">
+                    {spec.title}
+                  </h3>
+                </Link>
+                <p className="text-sm mb-4 opacity-90">{spec.description}</p>
+                <ul className="space-y-1 text-sm">
+                  {spec.features.map((feature, i) => (
+                    <li key={i} className="flex items-center">
+                      <div className="w-1.5 h-1.5 bg-white rounded-full mr-2" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          ))}
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

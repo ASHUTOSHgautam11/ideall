@@ -8,7 +8,7 @@ import Image from 'next/image';
 // Slide Data
 const slides = [
   {
-    img: '/hero/slide3.png',
+    img: 'assets/slider/slider3.png',
     alt: 'Premium Flooring Solutions',
     title: 'Premium Flooring Solutions',
     description: 'Global sourcing of luxury flooring materials with quality assurance',
@@ -16,7 +16,7 @@ const slides = [
     href: '/flooring'
   },
   {
-    img: '/hero/slide4.png',
+    img: 'assets/slider/slider6.png',
     alt: 'Luxury Furniture Sourcing',
     title: 'Luxury Furniture Sourcing',
     description: 'International procurement of high-end furniture pieces',
@@ -24,7 +24,7 @@ const slides = [
     href: '/furniture'
   },
   {
-    img: '/hero/slide3.png',
+    img: 'assets/slider/slider5.jpg',
     alt: 'Designer Fabrics & Textiles',
     title: 'Designer Fabrics & Textiles',
     description: 'Premium textiles from global manufacturers',
@@ -32,7 +32,7 @@ const slides = [
     href: '/fabrics'
   },
   {
-    img: '/hero/slide1.png',
+    img: 'assets/slider/slider2.jpg',
     alt: 'Fashion Walls & Interior Accents',
     title: 'Fashion Walls & Interior Accents',
     description: 'Statement walls and decorative elements for distinctive interiors',
@@ -129,7 +129,7 @@ export default function Slider() {
       </p>
     </div> */}
     <section
-      className="relative h-[810px] flex items-center justify-center overflow-hidden focus:outline-none"
+      className="relative h-[82vh] flex items-center justify-center overflow-hidden focus:outline-none"
       tabIndex={0}
       aria-label="Hero image carousel"
       onMouseEnter={() => setIsHovered(true)}

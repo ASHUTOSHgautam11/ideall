@@ -109,7 +109,7 @@ const TrustedByGlobal: React.FC = () => {
             style={{
                 padding: '50px 20px',
                 textAlign: 'center',
-                backgroundColor: '#f7f5f8ff',
+                backgroundColor: '#f7f4f2ff',
 
             }}
             aria-labelledby="trusted-by-heading"

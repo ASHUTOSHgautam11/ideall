@@ -12,7 +12,7 @@
   --color-foreground: #1A1A1A;
   --color-border: #E5E7EB;
   --color-input: #FFFFFF;
-  --color-ring: #2d1d58;
+  --color-ring: #160d30;
 
   /* Card */
   --color-card: #FFFFFF;
@@ -27,11 +27,11 @@
   --color-muted-foreground: #666666;
 
   /* Primary */
-  --color-primary: #2d1d58;
+  --color-primary: #1a0e3b;
   --color-primary-foreground: #FFFFFF;
 
   /* Secondary */
-  --color-secondary: #060607;
+  --color-secondary: #c29d7a;
   --color-secondary-foreground: #FFFFFF;
 
   /* Destructive */

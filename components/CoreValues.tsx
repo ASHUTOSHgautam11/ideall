@@ -32,7 +32,7 @@ export default function CoreValues() {
             Our Core Values
           </h2>
           <p className="text-xl text-gray-600">
-            The principles that guide everything we do
+            At Ideall Solutions, our core values shape every decision we make and every partnership we build. We believe in integrity, ensuring transparency and trust in all our dealings. With innovation and commitment to excellence, we continuously strive to deliver solutions that create lasting value for our clients.
           </p>
         </div>
 
